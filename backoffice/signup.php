@@ -3,7 +3,7 @@
 $msgType = "";
 $msg = "";
 $targetDir = "./images/avatars/";
-$image = "./images/default-avatar-icon.jpg";
+$image = "../images/default-avatar-icon.jpg";
 $name = "";
 $email = "";
 $pwd = "";
@@ -15,13 +15,16 @@ $country = "";
 // apenas para segundo momento - form submit
 if (isset($_POST["submit"])) {
 
-  require("connection.php");
+  require("../components/connection.php");
 
   // protected againts code injection
   $name = mysqli_real_escape_string($connection, $_POST["username"]);
   $email = $_POST["useremail"];
   // encript user pwd with md5 algorithm
-  $pwd = md5($_POST["pwd"]);
+  $pwd = $_POST["pwd"];
+  $salt = "$#_23!az";
+
+  $encryptedPwd = hash("sha256", $pwd . $salt);
   $street = $_POST["street"];
   $nr = $_POST["nr"];
   $postal = $_POST["postal"];
@@ -73,7 +76,7 @@ if (isset($_POST["submit"])) {
 
     // insert into db
     $query = "insert into store.user
-    (name, email, password, address_name, address_nr, address_postal_code, address_country, avatar) values ('$name', '$email','$pwd','$street','$nr','$postal','$country', '$image')";
+    (name, email, password, address_name, address_nr, address_postal_code, address_country, avatar) values ('$name', '$email','$encryptedPwd','$street','$nr','$postal','$country', '$image')";
 
     //echo $query;
 
