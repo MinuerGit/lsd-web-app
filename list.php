@@ -13,6 +13,8 @@ where category_idcategory = idcategory";
 
 $results = mysqli_query($connection, $query);
 
+$targetDir = "./images/products/";
+
 
 ?>
 
@@ -47,7 +49,7 @@ $results = mysqli_query($connection, $query);
 
         echo "<div class='col'>";
         echo "  <p class='fs-6'><a href='productDetail.php?id=$id'>$name</a></p>";
-        echo "  <img src='$image' />";
+        echo "  <img src='$targetDir.$image' />";
         echo "  <p>$price € ($price_vat €)</p>";
         echo "  <p class='badge bg-secondary'>$category</p>";
         echo "</div>";
