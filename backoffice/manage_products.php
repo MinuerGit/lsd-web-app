@@ -57,7 +57,7 @@ $result = mysqli_query($connection, $query);
 
                 echo "<tr>";
                 echo "  <td>$name</td>";
-                echo "  <td><a href='../upsertProduct.php?id=$idprod'>Editar</a> <a class='btn btn-danger' href='../upsertProduct.php?id=$idprod'>Eliminar</a></td>";
+                echo "  <td><a href='../upsertProduct.php?id=$idprod'>Editar</a> <a href='../upsertProduct.php?id=$idprod'>Eliminar</a></td>";
                 //echo "  <td>$depart</td>";
                 echo "</tr>";
               };
